@@ -3,6 +3,8 @@ import os
 from dotenv import load_dotenv
 from requests import get
 from bs4 import BeautifulSoup
+from openAI import get_openAI_data
+import re
 
 load_dotenv()
 
@@ -20,18 +22,28 @@ class News:
         articles = json_result['articles']
 
         if result.status_code == 200:
-            return [article['url'] for article in articles[:1]]
+            return [article['url'] for article in articles]
         else:
             raise Exception("It doesn't work")
 
     def get_html_text(self):
-        html_text = []
+        articles = []
         for url in self.get_news():
             result = get(url)
             soup = BeautifulSoup(result.content, 'html.parser')
-            text = soup.get_text()
-            html_text.append(text)
-        return html_text
-#
-# obj = News()
-# print(obj.get_html_text())
+            text = re.sub(r'\n\s*\n', r'\n\n', soup.get_text().strip(), flags=re.M)[:4049]
+            if len(text) >= 4097:
+                del text
+            else:
+                articles.append([text])
+        return articles
+
+    def summary(self):
+        summaries = []
+        for article in self.get_html_text():
+            summary = get_openAI_data(article)
+            summaries.append([summary])
+        return summaries
+
+obj = News()
+print(obj.summary())

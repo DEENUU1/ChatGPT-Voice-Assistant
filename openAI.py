@@ -9,7 +9,7 @@ def get_openAI_data(article_text):
     openai.api_key = os.getenv('OPENAIKEY')
     response = openai.Completion.create(
       model="text-davinci-003",
-      prompt=f"Summarize the content of {article_text}",
+      prompt=f'Podsumuj ten artykuł w języku polskim w około 500 słówach """ {article_text} """ ',
       temperature=0.5,
       max_tokens=256,
       top_p=1,

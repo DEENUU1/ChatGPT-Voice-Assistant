@@ -1,12 +1,14 @@
-from openAI import get_openAI_data
+
 from news import News
 
 
 def main():
     news = News()
-    article_text = news.get_html_text()
-    return get_openAI_data(article_text)
+    for summary in news.summary():
+        yield summary
+
 
 
 if __name__ == '__main__':
-    print(main())
+    for i in main():
+        print(i)
