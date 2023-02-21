@@ -3,8 +3,10 @@ from news import News
 
 
 def main():
-    # print(get_openAI_data())
     news = News()
+    article_text = news.get_html_text()
+    return get_openAI_data(article_text)
 
 
-print(main())
+if __name__ == '__main__':
+    print(main())
