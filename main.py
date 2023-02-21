@@ -1,10 +1,7 @@
-
-from news import News
-
+import summaryzer
 
 def main():
-    news = News()
-    for summary in news.summary():
+    for summary in summaryzer.return_article_summary():
         yield summary
 
 
