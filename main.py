@@ -1,14 +1,9 @@
+import asyncio
+from summaryzer import return_article_summary_async
 
-from news import News
-
-
-def main():
-    news = News()
-    for summary in news.summary():
-        yield summary
-
-
+async def main_async():
+    async for summary in return_article_summary_async():
+        print(summary)
 
 if __name__ == '__main__':
-    for i in main():
-        print(i)
+    asyncio.run(main_async())
