@@ -8,6 +8,7 @@ from news import News
 
 load_dotenv()
 
+
 async def get_openAI_data_async(article_text):
     openai.api_key = os.getenv('OPEN_AI_KEY')
     async with aiohttp.ClientSession() as session:
@@ -26,7 +27,6 @@ async def get_openAI_data_async(article_text):
         )
         response_data = await response.json()
         return response_data['choices'][0]['text']
-
 
 
 async def return_article_summary_async():
