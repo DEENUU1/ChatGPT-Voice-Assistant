@@ -8,7 +8,6 @@ from news import News
 
 load_dotenv()
 
-
 async def get_openAI_data_async(article_text):
     openai.api_key = os.getenv('OPEN_AI_KEY')
     async with aiohttp.ClientSession() as session:
@@ -16,9 +15,8 @@ async def get_openAI_data_async(article_text):
             "https://api.openai.com/v1/engines/text-davinci-003/completions",
             json={
                 "prompt": f'Podsumuj ten artykuł w języku polskim w około 100 słowach """ {article_text} """" ',
-                "temperature": 0.5,
+                "temperature": 0.2,
                 "max_tokens": 256,
-                "top_p": 1,
                 "stop": None
             },
             headers={
@@ -30,12 +28,13 @@ async def get_openAI_data_async(article_text):
         return response_data['choices'][0]['text']
 
 
+
 async def return_article_summary_async():
     news = News()
     articles = news.get_news_urls()
 
     summaries = []
-    for article_text in articles:
-        summary = await get_openAI_data_async(article_text)
+    for article in articles:
+        summary = await get_openAI_data_async(article)
         summaries.append([summary])
         yield summary
