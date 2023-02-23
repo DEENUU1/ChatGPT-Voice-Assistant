@@ -1,6 +1,6 @@
 import json
 from unittest import TestCase, mock
-from news import News
+from news_summary.news import News
 import pytest
 
 
