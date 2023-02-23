@@ -14,7 +14,7 @@ This application allows you to process press articles, display them in the conso
 
 ## Demo
 
-- [VIDEO DEMO ON YOUTUBE](https://youtu.be/LnE373sdkd0)
+- [VIDEO DEMO ON YOUTUBE](https://youtu.be/yFJaFXsPRnk)
 
 <img src="/files/1.png"/>
 
