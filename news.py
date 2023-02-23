@@ -1,18 +1,17 @@
 import json
 import os
 
-from dotenv import load_dotenv
+import configparser
 from requests import get
-
-
-load_dotenv()
 
 
 class News:
     """ This class allows to return news urls """
 
     def __init__(self):
-        self.api_key = os.getenv('NEWS_KEY')
+        config = configparser.ConfigParser()
+        config.read('config.ini')
+        self.api_key = config.get('NEWS SUMMARIZER', 'news_api_key')
 
     def _get_news_urls(self, country_code: str):
         base_url = f'https://newsapi.org/v2/top-headlines?country={country_code}&apiKey={self.api_key}'

@@ -2,15 +2,15 @@ import os
 
 import aiohttp
 import openai
-from dotenv import load_dotenv
+import configparser
 
 from news import News
 
-load_dotenv()
-
 
 async def get_openAI_summary(article_url: str, language: str):
-    openai.api_key = os.getenv('OPEN_AI_KEY')
+    config = configparser.ConfigParser()
+    config.read('config.ini')
+    openai.api_key = config.get('NEWS SUMMARIZER', 'openai_api_key')
     async with aiohttp.ClientSession() as session:
         response = await session.post(
             "https://api.openai.com/v1/engines/text-davinci-003/completions",
