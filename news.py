@@ -9,12 +9,12 @@ load_dotenv()
 
 
 class News:
-    """ This class allows to return news's urls """
+    """ This class allows to return news urls """
 
     def __init__(self):
         self.api_key = os.getenv('NEWS_KEY')
 
-    def get_news_urls(self):
+    def _get_news_urls(self):
         base_url = f'https://newsapi.org/v2/top-headlines?country=PL&apiKey={self.api_key}'
         result = get(base_url)
         json_result = json.loads(result.content)
