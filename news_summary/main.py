@@ -1,21 +1,14 @@
 import asyncio
 from docx import Document
 from summaryzer import return_article_summary
-import pyttsx3
 import configparser
 from welcome import Welcome
-
-
-def return_speech(summary: str):
-    engine = pyttsx3.init()
-    engine.say(summary)
-    engine.runAndWait()
+from text_to_speech import return_speech
 
 
 async def main_async():
     config = configparser.ConfigParser()
     config.read('config.ini')
-    language = config.get('NEWS SUMMARIZER', 'language')
     country_code = config.get('NEWS SUMMARIZER', 'country_code')
     user_name = config.get('NEWS SUMMARIZER', 'user_name')
 
@@ -31,7 +24,7 @@ async def main_async():
     print(welcome_weather)
     return_speech(welcome_weather)
 
-    async for summary, article_url in return_article_summary(country_code, language):
+    async for summary, article_url in return_article_summary(country_code):
         print(summary, article_url)
 
         return_speech(summary)

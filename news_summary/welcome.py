@@ -16,7 +16,7 @@ class Welcome:
 
     def return_welcome_message(self, user_name: str) -> str:
         message = f"Welcome {user_name} today is {self._get_current_data()}" \
-                  f" {self._get_current_time()}. You are about to hear today's" \
+                  f" {self._get_current_time()}. You are about to hear today's " \
                   f"news release. Have a good day and see you later! "
         return message
 
