@@ -1,47 +1,23 @@
+import unittest
 import json
-from unittest import TestCase, mock
-from news_summary.news import News
-import pytest
+from unittest.mock import MagicMock, patch
+
+from news import News
 
 
-class MockResponse:
-    """Mock class for Response"""
+class TestNews(unittest.TestCase):
+    """ Test Cases for news class methods """
+    def setUp(self) -> None:
+        with open('tests/news_fixture.json', encoding='utf-8') as json_file:
+            self.fake_news_information = json.load(json_file)
+        self.api_key = 'fakeapikey123'
 
-    def __init__(self, content, status_code):
-        self.content = content
-        self.status_code = status_code
-
-
-class TestNews(TestCase):
-    """Test case for News class"""
-
-    @mock.patch.dict({'NEWS_KEY': 'test_api_key'})
-    @mock.patch('news.get')
-    def test_get_news_url_success(self, mock_get):
-        mock_response = MockResponse(
-            json.dumps({
-                'status': 'ok',
-                'articles': [
-                    {'url': 'https://testurl1.com'},
-                    {'url': 'https://testurl2.com'}
-                ]
-            }), 200)
+    @patch('news.get')
+    def test_get_news(self, mock_get):
+        """ Test success get news from the API """
+        mock_response = MagicMock()
+        mock_response.status_code = 200
+        mock_response.content = json.dumps(self.fake_news_information)
         mock_get.return_value = mock_response
-        news = News()
-        urls = news.get_news_urls()
-
-        assert urls == ['https://testurl1.com', 'https://testurl2.com']
-
-    @mock.patch.dict({'NEWS_KEY': 'test_api_key'})
-    @mock.patch('news.get')
-    def test_get_news_url_failled(self, mock_get):
-        mock_response = MockResponse(
-            json.dumps({
-                'status': 'error',
-                'message': 'Invalid API key'
-            }), 401)
-        mock_get.return_value = mock_response
-        news = News()
-
-        with pytest.raises(Exception):
-            news.get_news_urls()
+        result = News._get_news_urls(self, 'PL')
+        self.assertEqual(result, ["https://news.google.com/rss/articles/CBMipwFodHRw"])

@@ -2,7 +2,7 @@ import aiohttp
 import openai
 import configparser
 
-from news_summary.news import News
+from news import News
 
 
 async def get_openAI_summary(article_url: str, language: str):

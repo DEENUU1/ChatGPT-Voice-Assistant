@@ -1,0 +1,18 @@
+{
+  "status": "ok",
+  "totalResults": 30,
+  "articles": [
+    {
+      "source": {
+        "id": "google-news",
+        "name": "Google News"
+      },
+      "author": "TVN24",
+      "title": "Kiedy będzie ciepło? Wir polarny studzi nadzieje. \"Nasz kawałek Europy przeniesie się w marcu w Arktykę\". P... - TVN24",
+      "description": null,
+      "url": "https://news.google.com/rss/articles/CBMipwFodHRw",
+      "urlToImage": null,
+      "publishedAt": "2023-02-25T13:51:56Z",
+      "content": null
+    }]
+}
