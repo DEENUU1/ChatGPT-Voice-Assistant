@@ -1,5 +1,4 @@
 import json
-import os
 
 import configparser
 from requests import get

@@ -1,7 +1,7 @@
 from unittest.mock import patch
-from news_summary.summaryzer import return_article_summary_async
+from summaryzer import return_article_summary_async
 import pytest
-from news_summary.news import News
+from news import News
 
 
 @pytest.mark.asyncio
