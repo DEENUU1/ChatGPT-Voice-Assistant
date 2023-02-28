@@ -2,6 +2,7 @@
 __pycache__/
 *.py[cod]
 *$py.class
+/news_summary/config.ini
 
 # C extensions
 *.so
