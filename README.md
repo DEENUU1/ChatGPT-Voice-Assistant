@@ -18,6 +18,11 @@ This application allows you to process press articles, display them in the conso
 
 <img src="/files/1.png"/>
 
+## FEATURES
+
+- Voice interaction with a program
+- Command-line scrolling twitter/redit...
+- Function to turn off your keyboard to clean it without any mistakes
 
 ## Documentation FOR .EXE VERSION
 
@@ -38,7 +43,14 @@ news_api_key=<HERE>
 news_api_key=dasd8asasd8
 ```
 
-5. Now you can run main.exe 
+5. Go to this website https://openweathermap.org/api and create your API key (You gonna wait 1-3 hours) then paste it inside
+weather_api_key=<HERE>
+
+```
+weather_api_key=dasdads8
+```
+
+6. Now you can run main.exe 
 
 
 
