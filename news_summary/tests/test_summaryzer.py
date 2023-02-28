@@ -1,5 +1,5 @@
 from unittest.mock import patch
-from summaryzer import return_article_summary_async
+from summaryzer import return_article_summary
 import pytest
 from news import News
 
@@ -14,7 +14,7 @@ async def test_return_article_summary():
         with patch('summaryzer.get_openAI_data_async',
                    return_value=article_summary):
             result = []
-            async for summary in return_article_summary_async():
+            async for summary in return_article_summary():
                 result.append(summary)
 
-            assert article_summary in result
+    assert article_summary in result

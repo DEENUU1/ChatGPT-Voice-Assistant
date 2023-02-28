@@ -13,7 +13,7 @@ async def get_openAI_summary(article_url: str) -> str:
         response = await session.post(
             "https://api.openai.com/v1/engines/text-davinci-003/completions",
             json={
-                "prompt": f'Summarize this article in about 100 words """ {article_url} """" ',
+                "prompt": f'Summarize this article in about 100 words in English language""" {article_url} """" ',
                 "temperature": 0.2,
                 "max_tokens": 256,
                 "stop": None
