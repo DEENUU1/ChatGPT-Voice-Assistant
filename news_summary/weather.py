@@ -1,11 +1,9 @@
 from dataclasses import dataclass
 import json
 
-import openai
-import aiohttp
 from requests import get
 import configparser
-from openai_async import get_openai_conclusion
+
 
 @dataclass
 class WeatherInfo:
@@ -39,8 +37,6 @@ class Weather:
                 temp=weather_temp,
                 feels_like=weather_feels,
                 wind_speed=wind_speed)
-        else:
-            raise Exception("Nie działa")
 
     def return_weather_summary(self):
         prompt = f"Weather temperature is {str(int(round(self.get_weather().temp, 1)))} Celsius degree " \

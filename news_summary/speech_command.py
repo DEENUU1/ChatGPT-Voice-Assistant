@@ -17,6 +17,7 @@ def speech_command():
         except speech_recognition.UnknownValueError:
             recognizer = speech_recognition.Recognizer()
             continue
-
+        except speech_recognition.RequestError:
+            return "No internet connection. Try again."
 
 

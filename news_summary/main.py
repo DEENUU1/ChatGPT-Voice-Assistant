@@ -25,7 +25,6 @@ async def main_async():
     # Options based on the user decision
     while True:
         print("1. Weather information for today \n2. News summaries \n3. AI Conversation")
-        # user_decision = input("> ")
         user_decision = speech_command()
 
         # Weather info
@@ -47,11 +46,30 @@ async def main_async():
             continue
 
         # Conversation with AI
-        if "openai" or "ai" in user_decision:
+        if "openai" in user_decision:
             while True:
+                print("I am listening... ")
                 command = speech_command()
+                if "close the program" in command:
+                    break
                 print(await get_openai_conclusion(command))
                 return_speech(await get_openai_conclusion(command))
+
+        if "explain" in user_decision:
+            while True:
+                # Adding multiple lines
+                content = []
+                while True:
+                    try:
+                        command = str(input(">"))
+                        if command == "###":
+                            break
+                    except EOFError:
+                        break
+                    content.append(command)
+
+                print(await get_openai_conclusion(f"explain me this code {content}"))
+                return_speech(await get_openai_conclusion(content))
 
 if __name__ == '__main__':
     asyncio.run(main_async())
