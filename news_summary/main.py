@@ -25,10 +25,11 @@ async def main_async():
     # Options based on the user decision
     while True:
         print("1. Weather information for today \n2. News summaries \n3. AI Conversation")
-        user_decision = input("> ")
+        # user_decision = input("> ")
+        user_decision = speech_command()
 
         # Weather info
-        if user_decision == "1":
+        if "weather" in user_decision:
             weather = Weather()
             weather_summary = weather.return_weather_summary()
             print(await get_openai_conclusion(weather_summary))
@@ -36,7 +37,7 @@ async def main_async():
             continue
 
         # News summaries
-        if user_decision == "2":
+        if "news" in user_decision:
             async for summary, article_url in return_article_summary(country_code):
                 print(summary, article_url)
                 return_speech(summary)
@@ -46,7 +47,7 @@ async def main_async():
             continue
 
         # Conversation with AI
-        if user_decision == "3":
+        if "openai" or "ai" in user_decision:
             while True:
                 command = speech_command()
                 print(await get_openai_conclusion(command))

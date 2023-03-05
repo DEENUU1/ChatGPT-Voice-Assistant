@@ -1,7 +1,8 @@
 import openai
 import aiohttp
 import configparser
-import asyncio
+
+
 
 async def get_openai_conclusion(prompt) -> str:
     """ This is a async function that allows to make async request to the openai API """
