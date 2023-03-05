@@ -4,10 +4,12 @@ from summaryzer import return_article_summary
 import configparser
 from welcome import Welcome
 from text_to_speech import return_speech
-from weather import get_weather_conclusion
-
+from speech_command import speech_command
+from openai_async import get_openai_conclusion
+from weather import Weather
 
 async def main_async():
+    # Configuration
     config = configparser.ConfigParser()
     config.read('config.ini')
     country_code = config.get('NEWS SUMMARIZER', 'country_code')
@@ -16,18 +18,24 @@ async def main_async():
     welcome = Welcome()
     welcome_user = welcome.return_welcome_message(user_name)
 
+    # Welcome massage
     print(welcome_user)
     return_speech(welcome_user)
 
+    # Options based on the user decision
     while True:
-        print("1. Weather information for today \n2. News summaries")
+        print("1. Weather information for today \n2. News summaries \n3. AI Conversation")
         user_decision = input("> ")
 
+        # Weather info
         if user_decision == "1":
-            print(await get_weather_conclusion())
-            return_speech(await get_weather_conclusion())
+            weather = Weather()
+            weather_summary = weather.return_weather_summary()
+            print(await get_openai_conclusion(weather_summary))
+            return_speech(await get_openai_conclusion(weather_summary))
             continue
 
+        # News summaries
         if user_decision == "2":
             async for summary, article_url in return_article_summary(country_code):
                 print(summary, article_url)
@@ -36,6 +44,13 @@ async def main_async():
                     summary + ' ' + article_url)
             document.save('news.docx')
             continue
+
+        # Conversation with AI
+        if user_decision == "3":
+            while True:
+                command = speech_command()
+                print(await get_openai_conclusion(command))
+                return_speech(await get_openai_conclusion(command))
 
 if __name__ == '__main__':
     asyncio.run(main_async())
