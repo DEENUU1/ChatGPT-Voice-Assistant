@@ -1,8 +1,9 @@
 
-# VOICE NEWS SUMMARIES ##
-## Stay up to date with the latest information
+# ChatGPT Voice Assistant ##
+## Your desktop second brain ##
 
-This application allows you to process press articles, display them in the console, save them to a .docx file and convert text to speech.
+The application allows you to talk to the davinci-003 model by voice. You can talk to artificial intelligence thanks to speech recognition, listen to summaries of press articles downloaded from NewsAPI, find out what the weather is like today and what you should wear.
+The application is still in the development phase, I am still adding new features.
 
 ### Technology that I used:
 - Python
@@ -10,19 +11,38 @@ This application allows you to process press articles, display them in the conso
     - openai API
     - NEWS API 
 
-
-
 ## Demo
 
 - [VIDEO DEMO ON YOUTUBE](https://youtu.be/yFJaFXsPRnk)
 
 <img src="/files/1.png"/>
 
-## FEATURES
+## FEATURES:
 
-- Voice interaction with a program
-- Command-line scrolling twitter/redit...
-- Function to turn off your keyboard to clean it without any mistakes
+- Converting images into text and creating notes.
+- Deleting unnecessary files from your computer.
+- Turning off your keyboard to make it easier to clean.
+- Summaries for twitter posts.
+
+## VERSIONS:
+
+### V0.1:
+- downloading data from news API and returing summaries by chatGPT
+- text into speech
+- config file 
+- saving summaries to .docx file
+
+### V0.2: 
+- adding name to config file
+- returning local time and date
+- returning local weather information
+
+### V0.3:
+- Voice ntegration USER <-> PROGRAM
+- Drawing conclusions from weather information.
+- Handling Exceptions
+- Explaining a code
+- Voice chat with ChatGPT using speech recognizer
 
 ## Documentation FOR .EXE VERSION
 
