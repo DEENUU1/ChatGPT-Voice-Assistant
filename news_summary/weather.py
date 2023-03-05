@@ -1,5 +1,8 @@
 from dataclasses import dataclass
 import json
+
+import openai
+import aiohttp
 from requests import get
 import configparser
 
@@ -38,3 +41,32 @@ class Weather:
                 wind_speed=wind_speed)
         else:
             raise Exception("Nie działa")
+
+
+async def get_weather_conclusion() -> str:
+    """ This method is taking a weather data and then AI is returning a decision
+        on how to wear based on the weather """
+    config = configparser.ConfigParser()
+    config.read('config.ini')
+    openai.api_key = config.get("NEWS SUMMARIZER", 'openai_api_key')
+    weather = Weather()
+    weather_info = weather.get_weather()
+    async with aiohttp.ClientSession() as session:
+        response = await session.post(
+            "https://api.openai.com/v1/engines/text-davinci-003/completions",
+            json={
+                "prompt": f"Weather temperature is {weather_info.temp} Celsius degree"
+                          f"the temperature feels like {weather_info.feels_like} "
+                          f"and the wind speed is {weather_info.wind_speed}"
+                          f"Tell me what temperature is right now, and tell me how can I dress for these conditions.",
+                "temperature": 0.2,
+                "max_tokens": 256,
+                "stop": None
+            },
+            headers = {
+                "Content-Type": "application/json",
+                "Authorization": f"Bearer {openai.api_key}"
+            }
+        )
+        response_data = await response.json()
+        return response_data['choices'][0]['text']
