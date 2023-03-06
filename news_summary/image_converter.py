@@ -26,17 +26,16 @@ config.read('config.ini')
 
 LICENSE_CODE = config.get("NEWS SUMMARIZER", "image_to_text_licence")
 USERNAME = "KACPER"
-SOURCE_PATH = "images/IMG_8848.JPG"
 
-def image_to_text():
-    with open(SOURCE_PATH, 'rb') as image_file:
+
+def image_to_text(image_name: str) -> str:
+    with open(f'images/{image_name}', 'rb') as image_file:
         image_data = image_file.read()
 
     base_url = "https://www.ocrwebservice.com/restservices/processDocument?gettext=true&language=polish"
-    request = requests.post(base_url,data=image_data, auth=(
+    request = requests.post(base_url, data=image_data, auth=(
         USERNAME, LICENSE_CODE
     ))
     response = json.loads(request.content)
     return response
 
-print(image_to_text())

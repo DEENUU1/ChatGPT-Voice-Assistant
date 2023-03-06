@@ -7,6 +7,8 @@ from text_to_speech import return_speech
 from speech_command import speech_command
 from openai_async import get_openai_conclusion
 from weather import Weather
+from image_converter import image_to_text
+
 
 async def main_async():
     # Configuration
@@ -21,10 +23,14 @@ async def main_async():
     # Welcome massage
     print(welcome_user)
     return_speech(welcome_user)
-
+    print("I am listening... ")
     # Options based on the user decision
     while True:
-        print("1. Weather information for today \n2. News summaries \n3. AI Conversation")
+        print("1. Weather information for today SAY 'WEATHER'"
+              "\n2. News summaries SAY 'NEWS'"
+              "\n3. AI Conversation SAY 'CONVERSATION'"
+              "\n4. Explain code SAY 'EXPLAIN'"
+              "\n5. Image -> Text SAY 'IMAGE'")
         user_decision = speech_command()
 
         # Weather info
@@ -46,14 +52,14 @@ async def main_async():
             continue
 
         # Conversation with AI
-        if "openai" in user_decision:
+        if "conversation" in user_decision:
             while True:
                 print("I am listening... ")
-                command = speech_command()
-                if "close the program" in command:
+                prompt = speech_command()
+                if "close the program" in prompt:
                     break
-                print(await get_openai_conclusion(command))
-                return_speech(await get_openai_conclusion(command))
+                print(await get_openai_conclusion(prompt))
+                return_speech(await get_openai_conclusion(prompt))
 
         if "explain" in user_decision:
             while True:
@@ -61,15 +67,28 @@ async def main_async():
                 content = []
                 while True:
                     try:
-                        command = str(input(">"))
+                        command = str(input("> "))
                         if command == "###":
                             break
                     except EOFError:
                         break
                     content.append(command)
+                prompt = f"explain me this code {content}"
+                print(await get_openai_conclusion(prompt))
+                return_speech(await get_openai_conclusion(prompt))
 
-                print(await get_openai_conclusion(f"explain me this code {content}"))
-                return_speech(await get_openai_conclusion(content))
+        # Image ot text converter and AI notes
+        if "image" in user_decision:
+            while True:
+                image_name = input("Name of the image > ")
+                data = image_to_text(image_name)
+                prompt = f"Summarize me this text, create a note {data}"
+                openai_summary = await get_openai_conclusion(prompt)
+                print(openai_summary)
+                return_speech(openai_summary)
+                document.add_paragraph(openai_summary)
+                document.save('imageFromText.docx')
+                continue
 
 if __name__ == '__main__':
     asyncio.run(main_async())
