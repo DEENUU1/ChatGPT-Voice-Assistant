@@ -57,7 +57,7 @@ async def main_async():
 
         if "explain" in user_decision:
             while True:
-                # Adding multiple lines
+                # Adding multiple lines of code
                 content = []
                 while True:
                     try:
