@@ -6,7 +6,7 @@ config = configparser.ConfigParser()
 config.read('config.ini')
 
 LICENSE_CODE = config.get("NEWS SUMMARIZER", "image_to_text_licence")
-USERNAME = "KACPER"
+USERNAME = config.get("NEWS SUMMARIZER", "ocr_name")
 
 
 def image_to_text(image_name: str) -> str:
