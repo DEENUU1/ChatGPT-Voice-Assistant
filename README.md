@@ -15,7 +15,7 @@ The application is still in the development phase, I am still adding new feature
 
 - [VIDEO DEMO ON YOUTUBE](https://youtu.be/yFJaFXsPRnk)
 
-<img src="/files/2.gif"/>
+<img src="/files/2.gif.gif"/>
 <img src="/files/1.png"/>
 
 ## FEATURES:
