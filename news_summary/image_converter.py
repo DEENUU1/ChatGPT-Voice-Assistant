@@ -1,22 +1,3 @@
-# import cv2
-# from pytesseract import pytesseract
-# import os
-# from PIL import Image
-#
-#
-# SOURCE_PATH = 'images/Screenshot_1.png'
-# TESSERACT_PATH = 'tesseract/tesseract.exe'
-#
-#
-# def image_to_text():
-#     image = Image.open(SOURCE_PATH)
-#     pytesseract.tesseract_cmd = TESSERACT_PATH
-#     text = pytesseract.image_to_string(image, lang='pol')
-#     return text
-#
-# print(image_to_text())
-
-
 import requests
 import json
 import configparser
@@ -29,6 +10,7 @@ USERNAME = "KACPER"
 
 
 def image_to_text(image_name: str) -> str:
+    """ This function allows to convert image into text with OCR API """
     with open(f'images/{image_name}', 'rb') as image_file:
         image_data = image_file.read()
 
