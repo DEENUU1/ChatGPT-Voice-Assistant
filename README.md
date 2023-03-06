@@ -1,8 +1,7 @@
-
 # ChatGPT Voice Assistant ##
 ## Your desktop second brain ##
 
-The application allows you to talk to the davinci-003 model by voice. You can talk to artificial intelligence thanks to speech recognition, listen to summaries of press articles downloaded from NewsAPI, find out what the weather is like today and what you should wear.
+The application allows you to talk to the DaVinci-003 model by voice. You can talk to artificial intelligence thanks to speech recognition, listen to summaries of press articles downloaded from NewsAPI, and find out what the weather is like today and what you should wear.
 The application is still in the development phase, I am still adding new features.
 
 ### Technology that I used:
@@ -10,11 +9,13 @@ The application is still in the development phase, I am still adding new feature
 - APIs:
     - openai API
     - NEWS API 
+    - ocrwebservice API
 
 ## Demo
 
 - [VIDEO DEMO ON YOUTUBE](https://youtu.be/yFJaFXsPRnk)
 
+<img src="/files/2.gif"/>
 <img src="/files/1.png"/>
 
 ## FEATURES:
@@ -22,33 +23,33 @@ The application is still in the development phase, I am still adding new feature
 - Converting images into text and creating notes.
 - Deleting unnecessary files from your computer.
 - Turning off your keyboard to make it easier to clean.
-- Summaries for twitter posts.
+- Summaries for Twitter posts.
 
 ## VERSIONS:
 
 ### V0.1:
-- downloading data from news API and returing summaries by chatGPT
-- text into speech
-- config file 
-- saving summaries to .docx file
+- Downloading data from news API and returning summaries by chatGPT
+- Text into speech
+- Config file 
+- Saving summaries to a .docx file
 
 ### V0.2: 
-- adding name to config file
-- returning local time and date
-- returning local weather information
+- Adding a name to the config file
+- Returning local time and date
+- Returning local weather information
 
 ### V0.3:
-- Voice ntegration USER <-> PROGRAM
+- Voice integration USER <-> PROGRAM
 - Drawing conclusions from weather information.
 - Handling Exceptions
 - Explaining a code
 - Voice chat with ChatGPT using speech recognizer
 
-## Documentation FOR .EXE VERSION
+## Documentation FOR. EXE VERSION
 
 1. Download the .exe version of the project from the newest release
 
-2. Open config file and choose your language, country code (for example: US/DE/PL)
+2. Open the config file and choose your language, and country code (for example US/DE/PL)
 
 3. Go to this website https://openai.com/api/ and create your API key, then paste it inside openai_api_key=<HERE>
 
@@ -70,7 +71,14 @@ weather_api_key=<HERE>
 weather_api_key=dasdads8
 ```
 
-6. Now you can run main.exe 
+6. Go to this website https://www.onlineocr.net/service/ocrwebservice and create an account, then paste information inside the config file.
+
+```
+ocr_name=ASDDd
+image_to_text_licence=asdasd
+```
+
+7. Now you can run main.exe 
 
 
 
@@ -78,7 +86,7 @@ weather_api_key=dasdads8
 
 If you wanna work with the code you can:
 
-1. Clone the github repository
+1. Clone the GitHub repository
 
 ```
 git clone https://github.com/DEENUU1/news-summarizer.git
