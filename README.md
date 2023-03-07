@@ -13,7 +13,7 @@ The application is still in the development phase, I am still adding new feature
 
 ## Demo
 
-- [VIDEO DEMO ON YOUTUBE](https://youtu.be/yFJaFXsPRnk)
+- [VIDEO DEMO ON YOUTUBE](https://youtu.be/OZ-XXY4TIU0)
 
 <img src="/files/2.gif.gif"/>
 <img src="/files/1.png"/>
