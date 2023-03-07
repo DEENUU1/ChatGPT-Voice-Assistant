@@ -73,22 +73,26 @@ async def main_async():
                     except EOFError:
                         break
                     content.append(command)
+
                 prompt = f"explain me this code {content}"
                 print(await get_openai_conclusion(prompt))
                 return_speech(await get_openai_conclusion(prompt))
+                break
 
         # Image ot text converter and AI notes
         if "image" in user_decision:
             while True:
                 image_name = input("Name of the image > ")
-                data = image_to_text(image_name)
-                prompt = f"Summarize me this text, create a note {data}"
+                what_to_do = input("Tell me what to do with this text > ")
+                language = input("In what language is this text? > ")
+                data = image_to_text(image_name, language)
+                prompt = f"Summarize me this text, {what_to_do} {data}"
                 openai_summary = await get_openai_conclusion(prompt)
                 print(openai_summary)
                 return_speech(openai_summary)
                 document.add_paragraph(openai_summary)
                 document.save('imageFromText.docx')
-                continue
+                break
 
 if __name__ == '__main__':
     asyncio.run(main_async())
